@@ -12,7 +12,7 @@ message ProductId {
 }
 
 message productsList {
-    repeated Product product = 1;
+    repeated Product products = 1;
 }
 
 message CreateProduct {
@@ -31,7 +31,7 @@ message Empty {}
 service ProductService {
     rpc listProduct (Empty) returns (productsList);
     rpc getProduct (ProductId) returns (Product);
-    rpc newProduct (CreateProduct) returns (Result);
+    rpc createProduct (CreateProduct) returns (Result);
     rpc updateProduct (Product) returns (Result);
     rpc deleteProduct (ProductId) returns (Result);
 }

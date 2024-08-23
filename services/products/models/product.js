@@ -8,13 +8,14 @@ const Schema = new mongoose.Schema({
 }, { timestamps: true, toJSON: { virtuals: true, versionKey: false } });
 
 
-Schema.pre('save', function (next) {
-    const self = this;
-    self.constructor.count(async function (err, data) {
-        if (err) return next(err);
-        mongoose.model.set({ id: { data: +1 } });
+Schema.pre('save', async function (next) {
+    try {
+        const count = await this.constructor.countDocuments({});
+        this.id = count + 1;
         next();
-    });
+    } catch (err) {
+        next(err);
+    }
 });
 
 
