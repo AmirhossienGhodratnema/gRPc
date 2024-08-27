@@ -28,7 +28,15 @@ function GetProductId(req, res) {
     const { id } = req.query;
     productClient.getProductId({ id }, (err, data) => {
         if (err) return res.json(err);
-        console.log('Result data from gRPC', data)
+        return res.json(data);
+    });
+};
+
+function DistroyProduct(req, res) {
+    const { id } = req.query;
+    productClient.distrodyProductId({ id }, (err, data) => {
+        console.log('client', data)
+        if (err) return res.json(err);
         return res.json(data);
     });
 };
@@ -37,4 +45,5 @@ module.exports = {
     ListProduct,
     CreateProducts,
     GetProductId,
+    DistroyProduct,
 }
