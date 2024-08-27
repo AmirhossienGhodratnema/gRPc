@@ -32,6 +32,7 @@ service ProductService {
     rpc listProduct (Empty) returns (productsList);
     rpc getProduct (ProductId) returns (Product);
     rpc createProduct (CreateProduct) returns (Result);
+    rpc getProductId (ProductId) returns (Product);
     rpc updateProduct (Product) returns (Result);
     rpc deleteProduct (ProductId) returns (Result);
 }

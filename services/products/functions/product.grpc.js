@@ -12,7 +12,7 @@ async function listProduct(call, callback) {
 
 async function createProduct(call, callback) {
     try {
-        const {title, price} = call.request;
+        const { title, price } = call.request;
         await Products.create({ title, price });
         callback(null, { status: 'Create' });
     } catch (error) {
@@ -21,7 +21,20 @@ async function createProduct(call, callback) {
 }
 
 
+async function getProductId(call, callback) {
+    try {
+        const { id } = call.request;
+        const product = await Products.findOne({ id });
+        callback(null,product );
+    } catch (error) {
+        callback(error, null);
+    };
+};
+
+
+
 module.exports = {
     listProduct,
     createProduct,
+    getProductId,
 }
