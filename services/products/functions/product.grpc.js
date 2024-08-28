@@ -42,6 +42,17 @@ async function distrodyProductId(call, callback) {
     };
 };
 
+async function updateProduct(call, callback) {
+    try {
+        const { id, title, price } = call.request;
+        console.log(title, price)
+        const product = await Products.updateOne({ id }, { $set: { title, price } });
+        console.log('Product update in product gRPC');
+        callback(null, { status: 'Updated' });
+    } catch (error) {
+        callback(error, null);
+    };
+};
 
 
 module.exports = {
@@ -49,4 +60,5 @@ module.exports = {
     createProduct,
     getProductId,
     distrodyProductId,
+    updateProduct,
 }

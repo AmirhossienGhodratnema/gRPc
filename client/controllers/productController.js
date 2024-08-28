@@ -41,9 +41,18 @@ function DistroyProduct(req, res) {
     });
 };
 
+function UpdateProduct(req, res) {
+    const { id, title, price } = req.query;
+    productClient.updateProduct({ id, title, price }, (err, data) => {
+        console.log('Result update product', data);
+    });
+    return res.json('Update product');
+};
+
 module.exports = {
     ListProduct,
     CreateProducts,
     GetProductId,
     DistroyProduct,
-}
+    UpdateProduct
+};
